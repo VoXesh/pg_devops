@@ -12,6 +12,7 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/devopstrainers1/addressbook.git'
             }
         }
+
         stage ('Code Compile') {
             steps{
                 catchError (buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -27,14 +28,20 @@ pipeline {
                 sh """
                 echo "demo"
                 """
+
             }
             }
+
         stage ('Packaging') {
             steps {
                 sh """
                 mvn package
                 """
+
             }
         }
+
+
       }   
+
 }

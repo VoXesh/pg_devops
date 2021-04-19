@@ -6,12 +6,6 @@ pipeline {
             maven 'mymaven'
             jdk 'myjava'
         }
-        environment {
-            SLACK_NAME='#stage'
-            Server_NAME: 'demo_server'
-
-        }
-
     stages {
 
         stage ('Checkout the code') {
@@ -68,11 +62,6 @@ pipeline {
           always{
               junit 'target/surefire-reports/**/*.xml'
           }
-      }  
-
-         failure {
-             slackSend baseURL: <SLACK_URL>, channel: env.SLACK_NAME, message: "The build is failed"
-
-         } 
+      }   
 
 }
